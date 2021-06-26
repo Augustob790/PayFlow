@@ -6,6 +6,18 @@ Uma aplicação para ajudar no gerenciamento dos seus boletos.
 
 Flutter e VsCode
 
+# Como Instalar?
+
+
+1 - Passo: Baixe o FLutter e instale na sua maquina
+
+2 - Passo: User o comando para realizar a instalação
+
+''''
+      flutter run
+'''
+
+
 This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
