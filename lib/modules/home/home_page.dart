@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:payflow/modules/extract/extract_page.dart';
 import 'package:payflow/modules/home/home_controller.dart';
+import 'package:payflow/modules/meus_boletos/meus_boletos_page.dart';
+import 'package:payflow/shared/models/user_model.dart';
 import 'package:payflow/shared/themes/app_text_styles.dart';
 import 'package:payflow/shared/themes/appcolors.dart';
+import 'package:flutter/foundation.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key key}) : super(key: key);
+  final UserModel user;
+  const HomePage({Key key, @required this.user}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -12,14 +17,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final controller = HomeController();
-  final pages = [
-    Container(
-      color: Colors.red,
-    ),
-    Container(
-      color: Colors.blue,
-    ),
-  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +34,7 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyles.titleRegular,
                     children: [
                       TextSpan(
-                        text: "Augusto",
+                        text: "${widget.user.name}",
                         style: TextStyles.buttonBoldBackground,
                       )
                     ]),
@@ -49,14 +47,25 @@ class _HomePageState extends State<HomePage> {
                 height: 48,
                 width: 48,
                 decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(5)),
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(5),
+                  /*image: DecorationImage(
+                      image: NetworkImage(widget.user.photoURL),
+                    )*/
+                ),
               ),
             ),
           ),
         ),
       ),
-      body: pages[controller.currentPage],
+      body: [
+        MeusBoletosPage(
+          key: UniqueKey(),
+        ),
+        ExtractPage(
+          key: UniqueKey(),
+        ),
+      ][controller.currentPage],
       bottomNavigationBar: Container(
         height: 90,
         child: Row(
@@ -69,12 +78,15 @@ class _HomePageState extends State<HomePage> {
               },
               icon: Icon(
                 Icons.home,
-                color: AppColors.primary,
+                color: controller.currentPage == 0
+                    ? AppColors.primary
+                    : AppColors.body,
               ),
             ),
             GestureDetector(
-              onTap: () {
-                print("Clicou");
+              onTap: () async {
+                await Navigator.pushNamed(context, "/barcode_scanner");
+                setState(() {});
               },
               child: Container(
                 width: 56,
@@ -95,7 +107,9 @@ class _HomePageState extends State<HomePage> {
               },
               icon: Icon(
                 Icons.description_outlined,
-                color: AppColors.body,
+                color: controller.currentPage == 1
+                    ? AppColors.primary
+                    : AppColors.body,
               ),
             ),
           ],
