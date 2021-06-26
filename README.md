@@ -13,7 +13,7 @@ Flutter e VsCode
 
 2 - Passo: User o comando para realizar a instalação
 
-''''
+'''
       flutter run
 '''
 
