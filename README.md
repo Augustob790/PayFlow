@@ -6,7 +6,7 @@ Uma aplicação para ajudar no gerenciamento dos seus boletos.
 
 Flutter e VsCode
 
-# Como Instalar?
+# Como Executar?
 
 
 1 - Passo: Baixe o FLutter e instale na sua maquina
