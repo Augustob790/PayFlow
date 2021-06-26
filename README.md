@@ -1,8 +1,10 @@
 # payflow
 
-A new Flutter project.
+Uma aplicação para ajudar no gerenciamento dos seus boletos.
 
-## Getting Started
+# Ferramentas utilizadas
+
+Flutter e VsCode
 
 This project is a starting point for a Flutter application.
 
